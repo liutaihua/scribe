@@ -354,7 +354,11 @@ void FileStoreBase::copyCommon(const FileStoreBase *base) {
     filePath += "/" + subDirectory;
   }
 
-  baseFileName = categoryHandled;
+  /*
+  modify it for suffix name like:2011-04-14,defage@gmail.com
+  */
+  //baseFileName = categoryHandled;
+  baseFileName = "";
 }
 
 bool FileStoreBase::open() {
@@ -418,7 +422,11 @@ string FileStoreBase::makeFullFilename(int suffix, struct tm* creation_time,
     filename << filePath << '/';
   }
   filename << makeBaseFilename(creation_time);
-  filename << '_' << setw(5) << setfill('0') << suffix;
+  /*
+  modify it for suffix like:2011-04-14_00000 by defage@gmail.com
+  */
+  //filename << '_' << setw(5) << setfill('0') << suffix;
+  filename << setw(5) << setfill('0') << suffix;
 
   return filename.str();
 }
