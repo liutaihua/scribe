@@ -425,8 +425,7 @@ string FileStoreBase::makeFullFilename(int suffix, struct tm* creation_time,
   /*
   modify it for suffix like:2011-04-14_00000 by defage@gmail.com
   */
-  //filename << '_' << setw(5) << setfill('0') << suffix;
-  filename << setw(5) << setfill('0') << suffix;
+  filename << '_' << setw(5) << setfill('0') << suffix;
 
   return filename.str();
 }
@@ -434,9 +433,9 @@ string FileStoreBase::makeFullFilename(int suffix, struct tm* creation_time,
 string FileStoreBase::makeBaseSymlink() {
   ostringstream base;
   if (!baseSymlinkName.empty()) {
-    base << baseSymlinkName << "_current";
+    base << baseSymlinkName << "current";
   } else {
-    base << baseFileName << "_current";
+    base << baseFileName << "current";
   }
   return base.str();
 }
