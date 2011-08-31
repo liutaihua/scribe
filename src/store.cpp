@@ -348,7 +348,10 @@ void FileStoreBase::copyCommon(const FileStoreBase *base) {
    * baseFileName to the category name. these are arbitrary, could be anything
    * unique
    */
-  baseFilePath = base->baseFilePath + std::string("/") + categoryHandled;
+  //baseFilePath = base->baseFilePath + std::string("/") + categoryHandled;
+  string tmp = categoryHandled;
+  string ext_path = tmp.replace(0, tmp.find("%")+1, "");
+  baseFilePath = base->baseFilePath + std::string("/") + categoryHandled.replace(categoryHandled.find("%"),-1,"") + std::string("/") + ext_path;
   filePath = baseFilePath;
   if (!subDirectory.empty()) {
     filePath += "/" + subDirectory;
@@ -421,6 +424,7 @@ string FileStoreBase::makeFullFilename(int suffix, struct tm* creation_time,
   if (use_full_path) {
     filename << filePath << '/';
   }
+
   filename << makeBaseFilename(creation_time);
   /*
   modify it for suffix like:2011-04-14_00000 by defage@gmail.com
