@@ -150,3 +150,6 @@ The build process for Scribe uses autoconf macros to compile/link with Boost.
 These macros were written by Thomas Porschberg, Michael Tindal, and
 Daniel Casimiro.  See the m4 files in the aclocal subdirectory for more
 information.
+
+===============
+modify store.cpp for path to save file
