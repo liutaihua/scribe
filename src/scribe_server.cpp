@@ -246,8 +246,11 @@ bool scribeHandler::createCategoryFromModel(
   if (newThreadPerCategory) {
     // Create a new thread/StoreQueue for this category
     pstore = shared_ptr<StoreQueue>(new StoreQueue(model, category));
+    string tmp = category;
+    string info = tmp.replace(tmp.find("%"), -1, "");
     LOG_OPER("[%s] Creating new category store from model %s",
-             category.c_str(), model->getCategoryHandled().c_str());
+             //category.replace(category.find("$"),category.find("$"), "-").c_str(), model->getCategoryHandled().c_str());
+             info.c_str(), model->getCategoryHandled().c_str());
 
     // queue a command to the store to open it
     pstore->open();

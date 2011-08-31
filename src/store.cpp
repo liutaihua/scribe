@@ -348,6 +348,7 @@ void FileStoreBase::copyCommon(const FileStoreBase *base) {
    * baseFileName to the category name. these are arbitrary, could be anything
    * unique
    */
+  //fuck ni mei print
   //baseFilePath = base->baseFilePath + std::string("/") + categoryHandled;
   string tmp = categoryHandled;
   string ext_path = tmp.replace(0, tmp.find("%")+1, "");
@@ -1524,8 +1525,11 @@ void BufferStore::changeState(buffer_state_t new_state) {
     break;
   }
 
+  string _info = categoryHandled;
+  //string info = tmp.replace(tmp.find("%"), -1, "");
   LOG_OPER("[%s] Changing state from <%s> to <%s>",
-      categoryHandled.c_str(), stateAsString(state), stateAsString(new_state));
+      //categoryHandled.c_str(), stateAsString(state), stateAsString(new_state));
+      _info.replace(_info.find("%"), -1, "").c_str(), stateAsString(state), stateAsString(new_state));
   state = new_state;
 }
 
@@ -1625,8 +1629,9 @@ void BufferStore::periodicCheck() {
         }
 
         if (secondaryStore->empty(&nowinfo)) {
+          string _info = categoryHandled;
           LOG_OPER("[%s] No more buffer files to send, switching to streaming mode",
-              categoryHandled.c_str());
+              _info.replace(_info.find("%"), -1, "").c_str());
           changeState(STREAMING);
 
           break;
